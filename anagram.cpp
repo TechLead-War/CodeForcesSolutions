@@ -1,20 +1,21 @@
-#include<bits/stdc++.h>
+
+#include <bits/stdc++.h>
 using namespace std;
-bool is_anagram(const string str1, const string str2){
-  int count[256] ={0}; //max characters in a string
-  for(auto i : str1){
-    count[i-'a']++;
-  }
-  for(auto it : str2){
-    count[it-'a']--;
-  }
-  for(auto it : count){
-      if(!it) return 0;
-  }
+bool isAnagram(string txt, string pat){
+  int arr[26] = {0};
+  for(int i = 0; i < txt.size(); i++)  arr[txt[i] - 'a']++;
+  for(int i = 0; i < pat.size(); i++)  arr[pat[i] - 'a']--;
+  for(int i = 0; i < 26; i++)  if(arr[i]) return 0;
   return 1;
 }
 int main(int argc, char const *argv[]) {
-  string str1, str2;   cin>>str1; cin>>str2;
-  cout<<(is_anagram(str1,str2))?"YES":"NO";
+  string txt, pat;
+  getline(cin,txt);
+  getline(cin,pat);
+  if(isAnagram(txt,pat)){
+    cout << "anagram";
+  }
+  else
+   cout << "Not Anagram";
   return 0;
 }
